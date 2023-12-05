@@ -1,0 +1,103 @@
+---
+title: "Clustering Decoded: Understanding Patterns in Complex Data"
+image: "movies.jpeg"
+date: "2023-11-28"
+categories: [Analysis, Visualization]
+jupyter: python3
+---
+# What is Clustering?
+
+Clustering is a technique used in machine learning and data analysis to group similar data points together based on certain characteristics or features. The primary goal of clustering is to segregate data into different groups or clusters, where data points within the same cluster are more similar to each other compared to those in other clusters.The process of clustering involves the following key aspects like Grouping Data , Unsupervised Learning , Similarity or Distance Measurement .
+
+# Types of Clustering Algorithms
+
+## K-Means Clustering
+
+K-Means is one of the most popular clustering algorithms used for partitioning data into K clusters.
+It aims to group data points into K clusters, minimizing the variance within each cluster.
+The algorithm iteratively assigns each data point to the nearest centroid (representative point) and recalculates the centroids until convergence.
+It's a centroid-based algorithm and requires the number of clusters (K) as input.
+
+## Hierarchical Clustering
+
+Hierarchical clustering builds a hierarchy of clusters, either by creating a bottom-up approach (agglomerative) or a top-down approach (divisive).
+Agglomerative clustering starts by considering each data point as a single cluster and then merges the most similar clusters iteratively until there's only one cluster containing all the data points.
+Divisive clustering begins with one cluster that encompasses all data points and then divides it into smaller clusters until each cluster consists of only one data point.
+The resulting hierarchy can be represented as a dendrogram.
+
+
+## Density-Based Clustering (DBSCAN)
+DBSCAN is a density-based clustering algorithm that identifies clusters based on the density of data points.
+It groups together data points that are closely packed, considering points within a specified radius as part of the same cluster.
+It doesn't require the number of clusters as an input and can identify clusters of arbitrary shapes.
+DBSCAN can also identify noise (outliers) as points that do not belong to any cluster.
+## Gaussian Mixture Models (GMM)
+
+GMM assumes that the data points are generated from a mixture of several Gaussian distributions.
+It identifies clusters by estimating the parameters (mean, variance, and weight) of these Gaussian distributions.
+Unlike K-Means, GMM allows data points to belong to multiple clusters with different probabilities, making it more flexible for complex data distributions.
+
+# Let us take an example 
+
+The code code provides an initial exploration and clustering of movie-related data, allowing for visual interpretation of how movies are grouped based on popularity and voting metrics. Further analysis and domain-specific insights can be drawn from the identified clusters to understand different movie categories or audience preferences.
+
+
+```{python}
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+# Load the dataset
+file_path = 'Top_rated_movies1.csv'
+data = pd.read_csv(file_path)
+
+# Extracting relevant columns for clustering
+columns_for_clustering = ['popularity', 'vote_average', 'vote_count']
+clustering_data = data[columns_for_clustering]
+
+# Handling missing values if any
+clustering_data.fillna(0, inplace=True)  # Filling missing values with 0, but handle them appropriately
+
+# Standardize the data to have mean=0 and variance=1
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(clustering_data)
+
+# Choosing the number of clusters (in this case, let's assume 5 clusters)
+num_clusters = 5
+
+# Apply K-Means clustering
+kmeans = KMeans(n_clusters=num_clusters, random_state=42)
+data['cluster_label'] = kmeans.fit_predict(scaled_data)
+
+# Visualizing the clusters (2D plot for two features)
+plt.scatter(data['popularity'], data['vote_average'], c=data['cluster_label'], cmap='viridis')
+plt.xlabel('Popularity')
+plt.ylabel('Vote Average')
+plt.title('K-Means Clustering')
+plt.show()
+
+# Displaying cluster centers
+cluster_centers = scaler.inverse_transform(kmeans.cluster_centers_)
+cluster_centers_df = pd.DataFrame(cluster_centers, columns=columns_for_clustering)
+print("Cluster Centers:")
+print(cluster_centers_df)
+
+
+```
+# Explanation
+
+## Data Preparation:
+Relevant columns ('popularity', 'vote_average', 'vote_count') were selected for clustering. Missing values, if any, were filled with zeros. The data was standardized using `StandardScaler` to ensure mean=0 and variance=1 for each feature.
+
+## Clustering:
+K-Means clustering was applied with five clusters (`num_clusters = 5`) on the standardized data. Each data point was assigned a 'cluster_label' based on its similarity to the cluster centers.
+
+## Visualization:
+The clustering results were visualized using a scatter plot. The x-axis represents 'popularity', the y-axis represents 'vote_average', and data points were colored according to their assigned cluster labels. This visualization helps in understanding how data points are distributed among different clusters based on these two features.
+
+## Cluster Centers:
+The code also printed the cluster centers (mean values of 'popularity', 'vote_average', 'vote_count') after transforming them back to the original scale.
+
+## Insights:
+The analysis allows for the identification of groups or clusters of movies based on their popularity, average votes, and vote counts. Understanding the characteristics of each cluster (e.g., movies with high popularity but lower vote averages or vice versa) might provide insights into audience preferences or critical acclaim.

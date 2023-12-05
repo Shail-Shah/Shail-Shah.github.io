@@ -1,0 +1,20 @@
+{
+  "index.qmd": {
+    "index.html": "83f857bb"
+  },
+  "posts/B2Clustering_files/B2Clustering.qmd": {
+    "B2Clustering.html": "724d4dfc"
+  },
+  "posts/B4Anomaly/B4Anomaly and outlier.qmd": {
+    "B4Anomaly and outlier.html": "21a0c0f6"
+  },
+  "posts/ClassificationB1_files/ClassificationB1.qmd": {
+    "ClassificationB1.html": "63ffb94e"
+  },
+  "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.qmd": {
+    "B3LinearAndNonlinearRegression.html": "8d3076e0"
+  },
+  "about.qmd": {
+    "about.html": "5db54aca"
+  }
+}

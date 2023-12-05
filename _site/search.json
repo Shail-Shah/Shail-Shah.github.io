@@ -1,0 +1,233 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Shail-Shah.github.io",
+    "section": "",
+    "text": "Clustering Decoded: Understanding Patterns in Complex Data\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nAnomalies/Outlier Detection\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\nShail Shah\n\n\n\n\n\n\n  \n\n\n\n\nClassification Theorems: Unveiling Patterns in Data\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nLinear and Non- linear regression\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html",
+    "title": "Linear and Non- linear regression",
+    "section": "",
+    "text": "This blog-post provides an overview and comparison of linear and non-linear regression techniques, common methods used in predictive modeling."
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#linear-regression",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#linear-regression",
+    "title": "Linear and Non- linear regression",
+    "section": "Linear Regression",
+    "text": "Linear Regression\nLinear regression is a statistical method used for modeling the relationship between a dependent variable and one or more independent variables. It assumes a linear relationship between the input variables and the output.\n\nAlgorithm Explanation\n\nModel Representation: Linear regression represents the relationship between the dependent variable Y and the independent variable(s) X using a linear equation: Y = b0 + b1*X + ε, where b0 is the intercept, b1 is the coefficient, and ε is the error term.\nObjective: The model aims to find the best-fitting line that minimizes the sum of the squared differences between actual and predicted values (Ordinary Least Squares method).\nModel Evaluation: Common evaluation metrics include R-squared, Mean Squared Error (MSE), and Root Mean Squared Error (RMSE). These metrics assess how well the model fits the data.\n\n\n\nUse Cases\nLinear regression is suitable when the relationship between variables is linear. It’s commonly used in scenarios such as predicting sales based on advertising expenditure, predicting housing prices based on area, etc."
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#non-linear-regression",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#non-linear-regression",
+    "title": "Linear and Non- linear regression",
+    "section": "Non-linear Regression",
+    "text": "Non-linear Regression\nNon-linear regression is used when the relationship between the dependent and independent variables is not linear. It models complex relationships by fitting a curve instead of a straight line.\n\nAlgorithm Explanation\n\nModel Representation: Non-linear regression uses non-linear equations to represent the relationship between variables. Examples include quadratic, exponential, logarithmic, and sigmoid functions.\nObjective: Similar to linear regression, the aim is to minimize the difference between actual and predicted values but using non-linear functions to fit the data.\nModel Evaluation: Evaluation metrics remain similar to linear regression, with R-squared, MSE, and RMSE being commonly used.\n\n\n\nUse Cases\nNon-linear regression is applicable when the relationship between variables is better represented by curves or other non-linear functions. Examples include modeling population growth, predicting disease spread, etc."
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#conclusion",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#conclusion",
+    "title": "Linear and Non- linear regression",
+    "section": "Conclusion",
+    "text": "Conclusion\nLinear regression is suitable for simpler relationships between variables, assuming linearity, while non-linear regression is more flexible, capturing complex patterns in the data. The choice between linear and non-linear regression depends on the nature of the data and the underlying relationship between variables.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error\n\n# Load the dataset\nfile_path = 'car data.csv'\ndata = pd.read_csv(file_path)\n\n# Selecting independent and dependent variables\nX = data[['Year', 'Present_Price', 'Kms_Driven', 'Owner']]  # Features\ny = data['Selling_Price']  # Target variable\n\n# Splitting the dataset into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Linear Regression\nlinear_reg = LinearRegression()\nlinear_reg.fit(X_train, y_train)\n\n# Prediction on the test set\ny_pred = linear_reg.predict(X_test)\n\n# Calculating RMSE (Root Mean Squared Error)\nrmse = mean_squared_error(y_test, y_pred, squared=False)\nprint('RMSE:', rmse)\n\n# Visualization\nplt.scatter(y_test, y_pred)\nplt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], 'k--', lw=2)\nplt.xlabel('Actual Selling Price')\nplt.ylabel('Predicted Selling Price')\nplt.title('Linear Regression (RMSE: {:.2f})'.format(rmse))\nplt.show()\n\nRMSE: 2.0304088376313625"
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#code-explanation",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#code-explanation",
+    "title": "Linear and Non- linear regression",
+    "section": "Code Explanation",
+    "text": "Code Explanation\n\nImporting Libraries\nThe code begins by importing necessary libraries: Pandas, NumPy, train_test_split, LinearRegression from scikit-learn, and matplotlib.pyplot.\n\n\nLoading and Preparing Data\n\nLoads the dataset ‘car data.csv’ into a Pandas DataFrame named data.\nSelects independent variables (‘Year’, ‘Present_Price’, ‘Kms_Driven’) as X and the dependent variable (‘Selling_Price’) as y.\nSplits the dataset into training and testing sets using train_test_split, allocating 80% for training and 20% for testing.\n\n\n\nBuilding the Linear Regression Model\n\nInitializes a Linear Regression model using LinearRegression() from scikit-learn.\nFits the model on the training data (X_train, y_train), learning the coefficients for the linear equation.\n\n\n\nModel Evaluation\n\nUses the trained model to make predictions on the test data (X_test).\nGenerates a scatter plot comparing predicted selling prices with actual selling prices to visualize the model’s performance."
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#conclusion-1",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#conclusion-1",
+    "title": "Linear and Non- linear regression",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe linear regression model successfully predicts selling prices of cars based on features like year, present price, and kilometers driven. The scatter plot visually represents the alignment between predicted and actual selling prices, allowing assessment of the model’s performance.\n\nimport pandas as pd\nimport numpy as np\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import LabelEncoder\nfrom sklearn.preprocessing import PolynomialFeatures\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error\nimport matplotlib.pyplot as plt\n\n# Load the dataset\nfile_path = 'car data.csv'\ndata = pd.read_csv(file_path)\n\n# Select relevant columns for analysis\ncolumns_for_regression = ['Year', 'Present_Price', 'Kms_Driven', 'Fuel_Type', 'Seller_Type', 'Transmission', 'Selling_Price']\ndata = data[columns_for_regression]\n\n# Encoding categorical variables\nlabel_encoder = LabelEncoder()\ndata['Fuel_Type'] = label_encoder.fit_transform(data['Fuel_Type'])\ndata['Seller_Type'] = label_encoder.fit_transform(data['Seller_Type'])\ndata['Transmission'] = label_encoder.fit_transform(data['Transmission'])\n\n# Independent variables (X) and dependent variable (y)\nX = data.drop('Selling_Price', axis=1)\ny = data['Selling_Price']\n\n# Split the data into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Polynomial regression\npoly = PolynomialFeatures(degree=2)  # Choose the degree of the polynomial\nX_train_poly = poly.fit_transform(X_train)\nX_test_poly = poly.transform(X_test)\n\n# Fitting the polynomial regression model\nmodel = LinearRegression()\nmodel.fit(X_train_poly, y_train)\n\n# Predictions on the test set\ny_pred = model.predict(X_test_poly)\n\n# Evaluation - Mean Squared Error (MSE)\nmse = mean_squared_error(y_test, y_pred)\nprint(f\"Mean Squared Error: {mse}\")\n\n# Visualization - Actual vs Predicted\nplt.scatter(y_test, y_pred)\nplt.xlabel('Actual Selling Price')\nplt.ylabel('Predicted Selling Price')\nplt.title('Actual vs Predicted Selling Price (non-linear Regression)')\nplt.show()\n\nMean Squared Error: 0.7269897857594595"
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#code-explanation-1",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#code-explanation-1",
+    "title": "Linear and Non- linear regression",
+    "section": "Code Explanation",
+    "text": "Code Explanation\nThe code performs the following steps:\n\nData Loading and Preprocessing\n\nLoads the ‘car data.csv’ dataset and selects relevant columns (‘Year’, ‘Present_Price’, ‘Kms_Driven’, ‘Fuel_Type’, ‘Seller_Type’, ‘Transmission’, ‘Selling_Price’).\nEncodes categorical variables (‘Fuel_Type’, ‘Seller_Type’, ‘Transmission’) using LabelEncoder to convert them into numerical format for analysis.\n\n\n\nData Splitting\n\nSplits the dataset into independent variables (X) and the dependent variable (y) representing features and the target variable (‘Selling_Price’) respectively.\nFurther splits the data into training and testing sets using train_test_split.\n\n\n\nPolynomial Regression\n\nUtilizes PolynomialFeatures from scikit-learn to generate polynomial and interaction features. The degree of the polynomial is set to 2 for demonstration purposes.\nTransforms the features into non-linear form and fits the Linear Regression model.\n\n\n\nModel Fitting and Prediction\n\nFits the non-linear regression model using the training data.\nMakes predictions on the test set using the trained model.\n\n\n\nEvaluation and Visualization\n\nCalculates the Mean Squared Error (MSE) to evaluate the model’s performance.\nGenerates a scatter plot to visualize the relationship between the actual and predicted selling prices."
+  },
+  {
+    "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#conclusion-2",
+    "href": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html#conclusion-2",
+    "title": "Linear and Non- linear regression",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis code showcases how non-linear regression can be used to predict car selling prices based on various features. Adjusting the degree of the polynomial or exploring different non-linear regression models can potentially capture more complex relationships in the data."
+  },
+  {
+    "objectID": "posts/B4Anomaly/B4Anomaly and outlier.html",
+    "href": "posts/B4Anomaly/B4Anomaly and outlier.html",
+    "title": "Anomalies/Outlier Detection",
+    "section": "",
+    "text": "In the realm of data analysis and machine learning, understanding anomalies and outliers is crucial for extracting meaningful insights and ensuring the accuracy of models. Anomaly and outlier detection techniques help identify observations that differ substantially from the majority of data points. Let’s delve deeper into these concepts and their significance.\n\n\n\nAnomaly and outlier detection serve various critical purposes in data analysis:\nData Quality Assurance: Identifying anomalies helps ensure data integrity by flagging potential errors or inconsistencies, contributing to better data quality. Identifying Critical Events: In various fields like finance, healthcare, or cybersecurity, detecting anomalies can highlight critical events or irregularities that require immediate attention. Improving Machine Learning Models: Removing outliers or treating them appropriately can enhance the performance and accuracy of machine learning models.\n\n\n\nVarious techniques can be employed to detect outliers, each with its strengths and limitations. Some popular methods include:\nInterquartile Range (IQR) Method: This method identifies outliers as data points that fall outside a certain range, typically 1.5 times the IQR below the first quartile or above the third quartile.\nBoxplot Method: Boxplots visually represent the distribution of data and highlight outliers as points outside the whiskers.\nZ-score Method: This method measures the number of standard deviations a data point lies from the mean. Outliers are typically defined as points with Z-scores greater than 3 or less than -3.\nIn this blog post, we will use the interquartile range (IQR) method to detect outliers in the Iris dataset. The Iris dataset is a popular benchmark dataset that consists of 150 samples of iris flowers, each belonging to one of three species: Iris setosa, Iris versicolor, and Iris virginica. Each sample is characterized by four features: sepal length, sepal width, petal length, and petal width.\n\n\n\n\nimport pandas as pd\nfrom sklearn.datasets import load_iris\nfrom sklearn.neighbors import LocalOutlierFactor\nimport matplotlib.pyplot as plt\n\n# Load Iris dataset\niris = load_iris()\n\n# Create a DataFrame from the Iris dataset\niris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)\n\n# Outlier Detection using Local Outlier Factor (LOF)\nlof = LocalOutlierFactor(n_neighbors=20, contamination=0.1)  # Adjust parameters as needed\noutliers = lof.fit_predict(iris_df)\n\n# Visualizing outliers using a scatter plot\nplt.figure(figsize=(8, 6))\n\nplt.scatter(iris_df.iloc[:, 0], iris_df.iloc[:, 1], c=outliers, cmap='viridis', edgecolor='k')\nplt.xlabel('Sepal Length')\nplt.ylabel('Sepal Width')\nplt.title('Outlier Detection (Local Outlier Factor)')\nplt.colorbar(label='Outlier Score')\nplt.show()\n\n\n\n\n\n\n\n\n\nImporting necessary libraries including Pandas, sklearn.datasets, LocalOutlierFactor, and Matplotlib.\n\n\n\nLoading the Iris dataset using load_iris() and storing it in a Pandas DataFrame (iris_df).\n\n\n\n-Creating an instance of the Local Outlier Factor (LOF) model with specified parameters (n_neighbors and contamination). Applying the LOF algorithm to detect outliers using fit_predict().\n\n\n\nPlotting a scatter plot to visualize the detected outliers. Sepal length is on the x-axis, sepal width on the y-axis, and the color of the points represents the outlier scores obtained from LOF.\n\n\n\n\nThe application of the Local Outlier Factor (LOF) algorithm on the Iris dataset for outlier detection based on sepal length and sepal width provided valuable insights into observations that significantly deviate from the majority.\nThe Python code implemented LOF, an unsupervised outlier detection algorithm, to identify potential anomalies in the Iris dataset. The scatter plot visualization depicted the detected outliers, where the color intensity of the points represented the outlier scores obtained from LOF.\nThis analysis helped pinpoint observations that exhibit unusual sepal dimensions compared to the majority of the dataset. Outliers, as identified by LOF, might signify either genuine anomalies or errors in measurements. Understanding and further investigating these outliers could provide essential insights into data quality, feature relevance, or underlying patterns within the Iris dataset.\nOverall, the application of LOF showcased its effectiveness in outlier detection, offering a starting point for deeper explorations and considerations in subsequent analyses or preprocessing steps when working with the Iris dataset."
+  },
+  {
+    "objectID": "posts/B4Anomaly/B4Anomaly and outlier.html#introduction",
+    "href": "posts/B4Anomaly/B4Anomaly and outlier.html#introduction",
+    "title": "Anomalies/Outlier Detection",
+    "section": "",
+    "text": "In the realm of data analysis and machine learning, understanding anomalies and outliers is crucial for extracting meaningful insights and ensuring the accuracy of models. Anomaly and outlier detection techniques help identify observations that differ substantially from the majority of data points. Let’s delve deeper into these concepts and their significance."
+  },
+  {
+    "objectID": "posts/B4Anomaly/B4Anomaly and outlier.html#importance-of-anomaly-and-outlier-detection",
+    "href": "posts/B4Anomaly/B4Anomaly and outlier.html#importance-of-anomaly-and-outlier-detection",
+    "title": "Anomalies/Outlier Detection",
+    "section": "",
+    "text": "Anomaly and outlier detection serve various critical purposes in data analysis:\nData Quality Assurance: Identifying anomalies helps ensure data integrity by flagging potential errors or inconsistencies, contributing to better data quality. Identifying Critical Events: In various fields like finance, healthcare, or cybersecurity, detecting anomalies can highlight critical events or irregularities that require immediate attention. Improving Machine Learning Models: Removing outliers or treating them appropriately can enhance the performance and accuracy of machine learning models."
+  },
+  {
+    "objectID": "posts/B4Anomaly/B4Anomaly and outlier.html#common-outlier-detection-techniques",
+    "href": "posts/B4Anomaly/B4Anomaly and outlier.html#common-outlier-detection-techniques",
+    "title": "Anomalies/Outlier Detection",
+    "section": "",
+    "text": "Various techniques can be employed to detect outliers, each with its strengths and limitations. Some popular methods include:\nInterquartile Range (IQR) Method: This method identifies outliers as data points that fall outside a certain range, typically 1.5 times the IQR below the first quartile or above the third quartile.\nBoxplot Method: Boxplots visually represent the distribution of data and highlight outliers as points outside the whiskers.\nZ-score Method: This method measures the number of standard deviations a data point lies from the mean. Outliers are typically defined as points with Z-scores greater than 3 or less than -3.\nIn this blog post, we will use the interquartile range (IQR) method to detect outliers in the Iris dataset. The Iris dataset is a popular benchmark dataset that consists of 150 samples of iris flowers, each belonging to one of three species: Iris setosa, Iris versicolor, and Iris virginica. Each sample is characterized by four features: sepal length, sepal width, petal length, and petal width."
+  },
+  {
+    "objectID": "posts/B4Anomaly/B4Anomaly and outlier.html#implementation",
+    "href": "posts/B4Anomaly/B4Anomaly and outlier.html#implementation",
+    "title": "Anomalies/Outlier Detection",
+    "section": "",
+    "text": "import pandas as pd\nfrom sklearn.datasets import load_iris\nfrom sklearn.neighbors import LocalOutlierFactor\nimport matplotlib.pyplot as plt\n\n# Load Iris dataset\niris = load_iris()\n\n# Create a DataFrame from the Iris dataset\niris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)\n\n# Outlier Detection using Local Outlier Factor (LOF)\nlof = LocalOutlierFactor(n_neighbors=20, contamination=0.1)  # Adjust parameters as needed\noutliers = lof.fit_predict(iris_df)\n\n# Visualizing outliers using a scatter plot\nplt.figure(figsize=(8, 6))\n\nplt.scatter(iris_df.iloc[:, 0], iris_df.iloc[:, 1], c=outliers, cmap='viridis', edgecolor='k')\nplt.xlabel('Sepal Length')\nplt.ylabel('Sepal Width')\nplt.title('Outlier Detection (Local Outlier Factor)')\nplt.colorbar(label='Outlier Score')\nplt.show()"
+  },
+  {
+    "objectID": "posts/B4Anomaly/B4Anomaly and outlier.html#code-explanation",
+    "href": "posts/B4Anomaly/B4Anomaly and outlier.html#code-explanation",
+    "title": "Anomalies/Outlier Detection",
+    "section": "",
+    "text": "Importing necessary libraries including Pandas, sklearn.datasets, LocalOutlierFactor, and Matplotlib.\n\n\n\nLoading the Iris dataset using load_iris() and storing it in a Pandas DataFrame (iris_df).\n\n\n\n-Creating an instance of the Local Outlier Factor (LOF) model with specified parameters (n_neighbors and contamination). Applying the LOF algorithm to detect outliers using fit_predict().\n\n\n\nPlotting a scatter plot to visualize the detected outliers. Sepal length is on the x-axis, sepal width on the y-axis, and the color of the points represents the outlier scores obtained from LOF."
+  },
+  {
+    "objectID": "posts/B4Anomaly/B4Anomaly and outlier.html#conclusion",
+    "href": "posts/B4Anomaly/B4Anomaly and outlier.html#conclusion",
+    "title": "Anomalies/Outlier Detection",
+    "section": "",
+    "text": "The application of the Local Outlier Factor (LOF) algorithm on the Iris dataset for outlier detection based on sepal length and sepal width provided valuable insights into observations that significantly deviate from the majority.\nThe Python code implemented LOF, an unsupervised outlier detection algorithm, to identify potential anomalies in the Iris dataset. The scatter plot visualization depicted the detected outliers, where the color intensity of the points represented the outlier scores obtained from LOF.\nThis analysis helped pinpoint observations that exhibit unusual sepal dimensions compared to the majority of the dataset. Outliers, as identified by LOF, might signify either genuine anomalies or errors in measurements. Understanding and further investigating these outliers could provide essential insights into data quality, feature relevance, or underlying patterns within the Iris dataset.\nOverall, the application of LOF showcased its effectiveness in outlier detection, offering a starting point for deeper explorations and considerations in subsequent analyses or preprocessing steps when working with the Iris dataset."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html",
+    "href": "posts/B2Clustering_files/B2Clustering.html",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "",
+    "text": "Clustering is a technique used in machine learning and data analysis to group similar data points together based on certain characteristics or features. The primary goal of clustering is to segregate data into different groups or clusters, where data points within the same cluster are more similar to each other compared to those in other clusters.The process of clustering involves the following key aspects like Grouping Data , Unsupervised Learning , Similarity or Distance Measurement ."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#k-means-clustering",
+    "href": "posts/B2Clustering_files/B2Clustering.html#k-means-clustering",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "K-Means Clustering",
+    "text": "K-Means Clustering\nK-Means is one of the most popular clustering algorithms used for partitioning data into K clusters. It aims to group data points into K clusters, minimizing the variance within each cluster. The algorithm iteratively assigns each data point to the nearest centroid (representative point) and recalculates the centroids until convergence. It’s a centroid-based algorithm and requires the number of clusters (K) as input."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#hierarchical-clustering",
+    "href": "posts/B2Clustering_files/B2Clustering.html#hierarchical-clustering",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "Hierarchical Clustering",
+    "text": "Hierarchical Clustering\nHierarchical clustering builds a hierarchy of clusters, either by creating a bottom-up approach (agglomerative) or a top-down approach (divisive). Agglomerative clustering starts by considering each data point as a single cluster and then merges the most similar clusters iteratively until there’s only one cluster containing all the data points. Divisive clustering begins with one cluster that encompasses all data points and then divides it into smaller clusters until each cluster consists of only one data point. The resulting hierarchy can be represented as a dendrogram."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#density-based-clustering-dbscan",
+    "href": "posts/B2Clustering_files/B2Clustering.html#density-based-clustering-dbscan",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "Density-Based Clustering (DBSCAN)",
+    "text": "Density-Based Clustering (DBSCAN)\nDBSCAN is a density-based clustering algorithm that identifies clusters based on the density of data points. It groups together data points that are closely packed, considering points within a specified radius as part of the same cluster. It doesn’t require the number of clusters as an input and can identify clusters of arbitrary shapes. DBSCAN can also identify noise (outliers) as points that do not belong to any cluster. ## Gaussian Mixture Models (GMM)\nGMM assumes that the data points are generated from a mixture of several Gaussian distributions. It identifies clusters by estimating the parameters (mean, variance, and weight) of these Gaussian distributions. Unlike K-Means, GMM allows data points to belong to multiple clusters with different probabilities, making it more flexible for complex data distributions."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#data-preparation",
+    "href": "posts/B2Clustering_files/B2Clustering.html#data-preparation",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "Data Preparation:",
+    "text": "Data Preparation:\nRelevant columns (‘popularity’, ‘vote_average’, ‘vote_count’) were selected for clustering. Missing values, if any, were filled with zeros. The data was standardized using StandardScaler to ensure mean=0 and variance=1 for each feature."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#clustering",
+    "href": "posts/B2Clustering_files/B2Clustering.html#clustering",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "Clustering:",
+    "text": "Clustering:\nK-Means clustering was applied with five clusters (num_clusters = 5) on the standardized data. Each data point was assigned a ‘cluster_label’ based on its similarity to the cluster centers."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#visualization",
+    "href": "posts/B2Clustering_files/B2Clustering.html#visualization",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "Visualization:",
+    "text": "Visualization:\nThe clustering results were visualized using a scatter plot. The x-axis represents ‘popularity’, the y-axis represents ‘vote_average’, and data points were colored according to their assigned cluster labels. This visualization helps in understanding how data points are distributed among different clusters based on these two features."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#cluster-centers",
+    "href": "posts/B2Clustering_files/B2Clustering.html#cluster-centers",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "Cluster Centers:",
+    "text": "Cluster Centers:\nThe code also printed the cluster centers (mean values of ‘popularity’, ‘vote_average’, ‘vote_count’) after transforming them back to the original scale."
+  },
+  {
+    "objectID": "posts/B2Clustering_files/B2Clustering.html#insights",
+    "href": "posts/B2Clustering_files/B2Clustering.html#insights",
+    "title": "Clustering Decoded: Understanding Patterns in Complex Data",
+    "section": "Insights:",
+    "text": "Insights:\nThe analysis allows for the identification of groups or clusters of movies based on their popularity, average votes, and vote counts. Understanding the characteristics of each cluster (e.g., movies with high popularity but lower vote averages or vice versa) might provide insights into audience preferences or critical acclaim."
+  },
+  {
+    "objectID": "posts/ClassificationB1_files/ClassificationB1.html",
+    "href": "posts/ClassificationB1_files/ClassificationB1.html",
+    "title": "Classification Theorems: Unveiling Patterns in Data",
+    "section": "",
+    "text": "Heart disease remains a significant health concern globally. Machine learning models have shown promise in predicting the likelihood of heart disease based on various medical attributes. In this document, we explore the application of machine learning in predicting heart disease using a dataset containing several health-related features.\n\n\nThe dataset used in this analysis contains several medical attributes that could potentially correlate with heart disease. These attributes include:\n\nAge\nSex\nChest pain type (cp)\nResting blood pressure (trtbps)\nSerum cholesterol (chol)\nFasting blood sugar (fbs)\nResting electrocardiographic results (restecg)\nMaximum heart rate achieved (thalachh)\nExercise-induced angina (exng)\nST depression induced by exercise relative to rest (oldpeak)\nSlope of the peak exercise ST segment (slp)\nNumber of major vessels (0-3) colored by fluoroscopy (caa)\nThalassemia (thall)\n\nThe last column ‘output’ represents the presence of heart disease, where ‘1’ indicates the presence and ‘0’ indicates the absence of heart disease.\n\n\n\nTwo classification algorithms, namely decision tree and random forest, were employed on this dataset to predict the likelihood of heart disease based on the provided features. Both algorithms were trained, validated, and evaluated for their predictive performance.\n\n\n\nTo prepare the dataset for modeling, data cleaning techniques were implemented. This involved handling missing values, addressing outliers, and encoding categorical variables if necessary.\n\n\n\nThe dataset was split into training and testing sets to train the machine learning models and assess their performance. The decision tree algorithm was implemented on the training set to predict the likelihood of heart disease based on the provided features.\n\nimport pandas as pd\nimport numpy as np\nimport pickle\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import confusion_matrix,accuracy_score,classification_report\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier\nimport warnings\nwarnings.filterwarnings(\"ignore\")\ndf = pd.read_csv(\"heart.csv\")\ndf.head(10)\ndf.tail(10)\ndf.shape\ndf.info()\ndf.describe()\ndf.isna().sum()\nsns.heatmap(df.isna())\ndf.duplicated().sum()\ndisplay(df.drop_duplicates(inplace=True)) \ndf.duplicated().sum()\ndf['output'].value_counts()\ndf.hist(figsize=(15,10))\nplt.show()\ncorr= df.corr()\nsns.heatmap(corr.rank(axis='columns'),cmap='Blues',annot=True)\nX = df.drop('output',axis='columns')\ny= df['output']\nX_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42)\nDT = DecisionTreeClassifier()\nDT.fit(X_train,y_train)\ny_prediction = DT.predict(X_test)\ntree_train_acc = round(accuracy_score(y_train,DT.predict(X_train))*100,2)\ntree_test_acc = round(accuracy_score(y_test,y_prediction)*100,2)\nprint('Accuracy = ' , tree_test_acc,' %')\nprint(classification_report(\n\n    y_test,\n    DT.predict(X_test)\n\n))\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 303 entries, 0 to 302\nData columns (total 14 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   age       303 non-null    int64  \n 1   sex       303 non-null    int64  \n 2   cp        303 non-null    int64  \n 3   trtbps    303 non-null    int64  \n 4   chol      303 non-null    int64  \n 5   fbs       303 non-null    int64  \n 6   restecg   303 non-null    int64  \n 7   thalachh  303 non-null    int64  \n 8   exng      303 non-null    int64  \n 9   oldpeak   303 non-null    float64\n 10  slp       303 non-null    int64  \n 11  caa       303 non-null    int64  \n 12  thall     303 non-null    int64  \n 13  output    303 non-null    int64  \ndtypes: float64(1), int64(13)\nmemory usage: 33.3 KB\nAccuracy =  78.69  %\n              precision    recall  f1-score   support\n\n           0       0.74      0.86      0.79        29\n           1       0.85      0.72      0.78        32\n\n    accuracy                           0.79        61\n   macro avg       0.79      0.79      0.79        61\nweighted avg       0.80      0.79      0.79        61\n\n\n\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRF = RandomForestClassifier()\nRF.fit(X_train,y_train)\ny_prediction = RF.predict(X_test)\nrdm_train_acc = round(accuracy_score(y_train,RF.predict(X_train))*100,2)\nrdm_test_acc = round(accuracy_score(y_test,y_prediction)*100,2)\nprint('Accuracy = ' , rdm_test_acc,' %')\nprint(classification_report(\n\n    y_test,\n    RF.predict(X_test)\n\n))\n\nAccuracy =  85.25  %\n              precision    recall  f1-score   support\n\n           0       0.83      0.86      0.85        29\n           1       0.87      0.84      0.86        32\n\n    accuracy                           0.85        61\n   macro avg       0.85      0.85      0.85        61\nweighted avg       0.85      0.85      0.85        61"
+  },
+  {
+    "objectID": "posts/ClassificationB1_files/ClassificationB1.html#dataset-overview",
+    "href": "posts/ClassificationB1_files/ClassificationB1.html#dataset-overview",
+    "title": "Classification Theorems: Unveiling Patterns in Data",
+    "section": "",
+    "text": "The dataset used in this analysis contains several medical attributes that could potentially correlate with heart disease. These attributes include:\n\nAge\nSex\nChest pain type (cp)\nResting blood pressure (trtbps)\nSerum cholesterol (chol)\nFasting blood sugar (fbs)\nResting electrocardiographic results (restecg)\nMaximum heart rate achieved (thalachh)\nExercise-induced angina (exng)\nST depression induced by exercise relative to rest (oldpeak)\nSlope of the peak exercise ST segment (slp)\nNumber of major vessels (0-3) colored by fluoroscopy (caa)\nThalassemia (thall)\n\nThe last column ‘output’ represents the presence of heart disease, where ‘1’ indicates the presence and ‘0’ indicates the absence of heart disease."
+  },
+  {
+    "objectID": "posts/ClassificationB1_files/ClassificationB1.html#methodology",
+    "href": "posts/ClassificationB1_files/ClassificationB1.html#methodology",
+    "title": "Classification Theorems: Unveiling Patterns in Data",
+    "section": "",
+    "text": "Two classification algorithms, namely decision tree and random forest, were employed on this dataset to predict the likelihood of heart disease based on the provided features. Both algorithms were trained, validated, and evaluated for their predictive performance."
+  },
+  {
+    "objectID": "posts/ClassificationB1_files/ClassificationB1.html#data-preprocessing",
+    "href": "posts/ClassificationB1_files/ClassificationB1.html#data-preprocessing",
+    "title": "Classification Theorems: Unveiling Patterns in Data",
+    "section": "",
+    "text": "To prepare the dataset for modeling, data cleaning techniques were implemented. This involved handling missing values, addressing outliers, and encoding categorical variables if necessary."
+  },
+  {
+    "objectID": "posts/ClassificationB1_files/ClassificationB1.html#data-splitting-and-model-implementation-of-decision-tree",
+    "href": "posts/ClassificationB1_files/ClassificationB1.html#data-splitting-and-model-implementation-of-decision-tree",
+    "title": "Classification Theorems: Unveiling Patterns in Data",
+    "section": "",
+    "text": "The dataset was split into training and testing sets to train the machine learning models and assess their performance. The decision tree algorithm was implemented on the training set to predict the likelihood of heart disease based on the provided features.\n\nimport pandas as pd\nimport numpy as np\nimport pickle\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import confusion_matrix,accuracy_score,classification_report\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier\nimport warnings\nwarnings.filterwarnings(\"ignore\")\ndf = pd.read_csv(\"heart.csv\")\ndf.head(10)\ndf.tail(10)\ndf.shape\ndf.info()\ndf.describe()\ndf.isna().sum()\nsns.heatmap(df.isna())\ndf.duplicated().sum()\ndisplay(df.drop_duplicates(inplace=True)) \ndf.duplicated().sum()\ndf['output'].value_counts()\ndf.hist(figsize=(15,10))\nplt.show()\ncorr= df.corr()\nsns.heatmap(corr.rank(axis='columns'),cmap='Blues',annot=True)\nX = df.drop('output',axis='columns')\ny= df['output']\nX_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42)\nDT = DecisionTreeClassifier()\nDT.fit(X_train,y_train)\ny_prediction = DT.predict(X_test)\ntree_train_acc = round(accuracy_score(y_train,DT.predict(X_train))*100,2)\ntree_test_acc = round(accuracy_score(y_test,y_prediction)*100,2)\nprint('Accuracy = ' , tree_test_acc,' %')\nprint(classification_report(\n\n    y_test,\n    DT.predict(X_test)\n\n))\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 303 entries, 0 to 302\nData columns (total 14 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   age       303 non-null    int64  \n 1   sex       303 non-null    int64  \n 2   cp        303 non-null    int64  \n 3   trtbps    303 non-null    int64  \n 4   chol      303 non-null    int64  \n 5   fbs       303 non-null    int64  \n 6   restecg   303 non-null    int64  \n 7   thalachh  303 non-null    int64  \n 8   exng      303 non-null    int64  \n 9   oldpeak   303 non-null    float64\n 10  slp       303 non-null    int64  \n 11  caa       303 non-null    int64  \n 12  thall     303 non-null    int64  \n 13  output    303 non-null    int64  \ndtypes: float64(1), int64(13)\nmemory usage: 33.3 KB\nAccuracy =  78.69  %\n              precision    recall  f1-score   support\n\n           0       0.74      0.86      0.79        29\n           1       0.85      0.72      0.78        32\n\n    accuracy                           0.79        61\n   macro avg       0.79      0.79      0.79        61\nweighted avg       0.80      0.79      0.79        61\n\n\n\nNone"
+  },
+  {
+    "objectID": "posts/ClassificationB1_files/ClassificationB1.html#random-forest-model-implementation",
+    "href": "posts/ClassificationB1_files/ClassificationB1.html#random-forest-model-implementation",
+    "title": "Classification Theorems: Unveiling Patterns in Data",
+    "section": "",
+    "text": "RF = RandomForestClassifier()\nRF.fit(X_train,y_train)\ny_prediction = RF.predict(X_test)\nrdm_train_acc = round(accuracy_score(y_train,RF.predict(X_train))*100,2)\nrdm_test_acc = round(accuracy_score(y_test,y_prediction)*100,2)\nprint('Accuracy = ' , rdm_test_acc,' %')\nprint(classification_report(\n\n    y_test,\n    RF.predict(X_test)\n\n))\n\nAccuracy =  85.25  %\n              precision    recall  f1-score   support\n\n           0       0.83      0.86      0.85        29\n           1       0.87      0.84      0.86        32\n\n    accuracy                           0.85        61\n   macro avg       0.85      0.85      0.85        61\nweighted avg       0.85      0.85      0.85        61"
+  },
+  {
+    "objectID": "posts/ClassificationB1_files/ClassificationB1.html#conclusion",
+    "href": "posts/ClassificationB1_files/ClassificationB1.html#conclusion",
+    "title": "Classification Theorems: Unveiling Patterns in Data",
+    "section": "Conclusion",
+    "text": "Conclusion\nMachine learning models, specifically decision tree and random forest, demonstrate potential in predicting heart disease based on various medical indicators. The evaluation of these models sheds light on their strengths and weaknesses in accurately identifying the presence of heart disease."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  }
+]

@@ -1,0 +1,129 @@
+---
+title: "Classification Theorems: Unveiling Patterns in Data"
+image: "heartphoto.jpg"
+date: "2023-11-28"
+categories: [Analysis, Visualization]
+jupyter: python3
+---
+# Introduction
+
+Heart disease remains a significant health concern globally. Machine learning models have shown promise in predicting the likelihood of heart disease based on various medical attributes. In this document, we explore the application of machine learning in predicting heart disease using a dataset containing several health-related features.
+
+## Dataset Overview
+
+The dataset used in this analysis contains several medical attributes that could potentially correlate with heart disease. These attributes include:
+
+- Age
+- Sex
+- Chest pain type (cp)
+- Resting blood pressure (trtbps)
+- Serum cholesterol (chol)
+- Fasting blood sugar (fbs)
+- Resting electrocardiographic results (restecg)
+- Maximum heart rate achieved (thalachh)
+- Exercise-induced angina (exng)
+- ST depression induced by exercise relative to rest (oldpeak)
+- Slope of the peak exercise ST segment (slp)
+- Number of major vessels (0-3) colored by fluoroscopy (caa)
+- Thalassemia (thall)
+
+The last column 'output' represents the presence of heart disease, where '1' indicates the presence and '0' indicates the absence of heart disease.
+
+
+## Methodology
+
+Two classification algorithms, namely decision tree and random forest, were employed on this dataset to predict the likelihood of heart disease based on the provided features. Both algorithms were trained, validated, and evaluated for their predictive performance.
+
+
+## Data Preprocessing
+
+To prepare the dataset for modeling, data cleaning techniques were implemented. This involved handling missing values, addressing outliers, and encoding categorical variables if necessary.
+
+## Data Splitting and Model Implementation of Decision Tree
+
+The dataset was split into training and testing sets to train the machine learning models and assess their performance. The decision tree algorithm was implemented on the training set to predict the likelihood of heart disease based on the provided features.
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import pickle
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix,accuracy_score,classification_report
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+import warnings
+warnings.filterwarnings("ignore")
+df = pd.read_csv("heart.csv")
+df.head(10)
+df.tail(10)
+df.shape
+df.info()
+df.describe()
+df.isna().sum()
+sns.heatmap(df.isna())
+df.duplicated().sum()
+display(df.drop_duplicates(inplace=True)) 
+df.duplicated().sum()
+df['output'].value_counts()
+df.hist(figsize=(15,10))
+plt.show()
+corr= df.corr()
+sns.heatmap(corr.rank(axis='columns'),cmap='Blues',annot=True)
+X = df.drop('output',axis='columns')
+y= df['output']
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42)
+DT = DecisionTreeClassifier()
+DT.fit(X_train,y_train)
+y_prediction = DT.predict(X_test)
+tree_train_acc = round(accuracy_score(y_train,DT.predict(X_train))*100,2)
+tree_test_acc = round(accuracy_score(y_test,y_prediction)*100,2)
+print('Accuracy = ' , tree_test_acc,' %')
+print(classification_report(
+
+    y_test,
+    DT.predict(X_test)
+
+))
+```
+
+
+## Random Forest Model Implementation
+
+
+
+
+
+```{python}
+RF = RandomForestClassifier()
+RF.fit(X_train,y_train)
+y_prediction = RF.predict(X_test)
+rdm_train_acc = round(accuracy_score(y_train,RF.predict(X_train))*100,2)
+rdm_test_acc = round(accuracy_score(y_test,y_prediction)*100,2)
+print('Accuracy = ' , rdm_test_acc,' %')
+print(classification_report(
+
+    y_test,
+    RF.predict(X_test)
+
+))
+```
+
+# Results
+
+The performance of the decision tree and random forest models was assessed based on various evaluation metrics such as accuracy, precision, recall, and F1-score. The comparison of these models' performance provides insights into their effectiveness in predicting heart disease.
+
+The accuracy achieved by the models:
+- Decision Tree: 78.69%
+- Random Forest: 86.89%
+
+This indicates that the random forest algorithm outperforms the decision tree in terms of accuracy in predicting heart disease.
+
+## Conclusion
+
+Machine learning models, specifically decision tree and random forest, demonstrate potential in predicting heart disease based on various medical indicators. The evaluation of these models sheds light on their strengths and weaknesses in accurately identifying the presence of heart disease.
+

@@ -1,0 +1,22 @@
+---
+title: "Shail Shah"
+image: shailshah.jpg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/Sms1309Shah
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/shailshahvt/
+    - icon: github
+      text: Github
+      href: https://github.com/Shail-Shah
+
+---
+# About Me
+A passionate Computer Science graduate student currently studying at Virginia Tech. My interest in technology stems from a strong desire to solve real-world problems and contribute positively to society.
+
+
+
