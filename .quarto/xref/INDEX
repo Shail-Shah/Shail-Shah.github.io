@@ -16,5 +16,8 @@
   },
   "about.qmd": {
     "about.html": "5db54aca"
+  },
+  "posts/Probability/ProbabilityDist.qmd": {
+    "ProbabilityDist.html": "90179892"
   }
 }

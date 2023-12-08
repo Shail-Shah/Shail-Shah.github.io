@@ -1,0 +1,62 @@
+---
+title: "Probability Disteribution and Random Variables"
+image: "Shopping.jpeg"
+date: "2023-11-28"
+categories: [Analysis, Visualization]
+jupyter: python3
+---
+## Probability Distributions:
+Probability distributions are mathematical functions that describe the likelihood of different outcomes occurring in an experiment or event. They define the probabilities associated with each possible value that a random variable can take.
+
+## Random Variables:
+
+A random variable is a variable whose possible values are numerical outcomes of a random phenomenon. It can take on different values according to the outcome of a random event. Random variables can be categorized as discrete or continuous.
+
+## Common Probability Distributions:
+
+- Uniform Distribution: All outcomes are equally likely within a specified range. It has a constant probability density over the range.
+- Normal Distribution (Gaussian Distribution): Often called the bell curve, it is symmetric around the mean and characterized by its mean and standard deviation. Many natural phenomena follow this distribution.
+- Exponential Distribution: Models the time between events occurring at a constant average rate and has a decreasing probability density as time increases.
+- Poisson Distribution: Describes the number of events occurring in a fixed interval of time or space, given a known average rate of occurrence.
+- Binomial Distribution: Deals with the number of successful outcomes in a fixed number of trials, each with the same probability of success.
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.mixture import GaussianMixture
+
+# Generating synthetic data for customer purchase amounts
+np.random.seed(42)
+
+# Simulating data for two customer segments (high spenders and low spenders)
+high_spenders = np.random.normal(150, 25, 500)  # High spender segment
+low_spenders = np.random.normal(50, 15, 300)   # Low spender segment
+
+# Concatenating data for both segments to create the overall dataset
+customer_data = np.concatenate([high_spenders, low_spenders]).reshape(-1, 1)
+
+# Fitting a Gaussian Mixture Model to the data
+gmm = GaussianMixture(n_components=2, random_state=42)
+gmm.fit(customer_data)
+
+# Predicting the clusters
+labels = gmm.predict(customer_data)
+probs = gmm.predict_proba(customer_data)
+
+# Plotting the data and the identified clusters
+plt.figure(figsize=(8, 6))
+plt.scatter(customer_data, np.zeros_like(customer_data), c=labels, cmap='viridis', s=50, alpha=0.5)
+plt.title('Customer Segmentation based on Purchase Behavior')
+plt.xlabel('Purchase Amount ($)')
+plt.ylabel('Cluster')
+plt.grid(True)
+plt.show()
+
+
+```
+
+### Algorithm Explanation
+- This example generates synthetic customer purchase data for two segments: high spenders and low spenders.
+- High spenders are simulated with a mean purchase amount of $150 and a standard deviation of $25 (high_spenders).
+- Low spenders are simulated with a mean purchase amount of $50 and a standard deviation of $15 (low_spenders).
+- Both segments' data are concatenated to create the overall customer dataset (customer_data).
+- A Gaussian Mixture Model (GMM) with n_components=2 is fitted to the customer purchase data..

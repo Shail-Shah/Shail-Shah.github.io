@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "HOME",
     "section": "",
-    "text": "Clustering Decoded: Understanding Patterns in Complex Data\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nAnomalies/Outlier Detection\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nClassification Theorems: Unveiling Patterns in Data\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nLinear and Non- linear regression\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "Probability Disteribution and Random Variables\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nClustering Decoded: Understanding Patterns in Complex Data\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nAnomalies/Outlier Detection\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nClassification Theorems: Unveiling Patterns in Data\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\n  \n\n\n\n\nLinear and Non- linear regression\n\n\n\n\n\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2023\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/B3LinearAndNonlinearRegression_files/B3LinearAndNonlinearRegression.html",
@@ -229,5 +229,33 @@
     "title": "Shail Shah",
     "section": "",
     "text": "About Me\nA passionate Computer Science graduate student currently studying at Virginia Tech. My interest in technology stems from a strong desire to solve real-world problems and contribute positively to society."
+  },
+  {
+    "objectID": "posts/Probability/ProbabilityDist.html",
+    "href": "posts/Probability/ProbabilityDist.html",
+    "title": "Probability Disteribution and Random Variables",
+    "section": "",
+    "text": "Probability distributions are mathematical functions that describe the likelihood of different outcomes occurring in an experiment or event. They define the probabilities associated with each possible value that a random variable can take."
+  },
+  {
+    "objectID": "posts/Probability/ProbabilityDist.html#probability-distributions",
+    "href": "posts/Probability/ProbabilityDist.html#probability-distributions",
+    "title": "Probability Disteribution and Random Variables",
+    "section": "",
+    "text": "Probability distributions are mathematical functions that describe the likelihood of different outcomes occurring in an experiment or event. They define the probabilities associated with each possible value that a random variable can take."
+  },
+  {
+    "objectID": "posts/Probability/ProbabilityDist.html#random-variables",
+    "href": "posts/Probability/ProbabilityDist.html#random-variables",
+    "title": "Probability Disteribution and Random Variables",
+    "section": "Random Variables:",
+    "text": "Random Variables:\nA random variable is a variable whose possible values are numerical outcomes of a random phenomenon. It can take on different values according to the outcome of a random event. Random variables can be categorized as discrete or continuous."
+  },
+  {
+    "objectID": "posts/Probability/ProbabilityDist.html#common-probability-distributions",
+    "href": "posts/Probability/ProbabilityDist.html#common-probability-distributions",
+    "title": "Probability Disteribution and Random Variables",
+    "section": "Common Probability Distributions:",
+    "text": "Common Probability Distributions:\n\nUniform Distribution: All outcomes are equally likely within a specified range. It has a constant probability density over the range.\nNormal Distribution (Gaussian Distribution): Often called the bell curve, it is symmetric around the mean and characterized by its mean and standard deviation. Many natural phenomena follow this distribution.\nExponential Distribution: Models the time between events occurring at a constant average rate and has a decreasing probability density as time increases.\nPoisson Distribution: Describes the number of events occurring in a fixed interval of time or space, given a known average rate of occurrence.\nBinomial Distribution: Deals with the number of successful outcomes in a fixed number of trials, each with the same probability of success.\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.mixture import GaussianMixture\n\n# Generating synthetic data for customer purchase amounts\nnp.random.seed(42)\n\n# Simulating data for two customer segments (high spenders and low spenders)\nhigh_spenders = np.random.normal(150, 25, 500)  # High spender segment\nlow_spenders = np.random.normal(50, 15, 300)   # Low spender segment\n\n# Concatenating data for both segments to create the overall dataset\ncustomer_data = np.concatenate([high_spenders, low_spenders]).reshape(-1, 1)\n\n# Fitting a Gaussian Mixture Model to the data\ngmm = GaussianMixture(n_components=2, random_state=42)\ngmm.fit(customer_data)\n\n# Predicting the clusters\nlabels = gmm.predict(customer_data)\nprobs = gmm.predict_proba(customer_data)\n\n# Plotting the data and the identified clusters\nplt.figure(figsize=(8, 6))\nplt.scatter(customer_data, np.zeros_like(customer_data), c=labels, cmap='viridis', s=50, alpha=0.5)\nplt.title('Customer Segmentation based on Purchase Behavior')\nplt.xlabel('Purchase Amount ($)')\nplt.ylabel('Cluster')\nplt.grid(True)\nplt.show()\n\n\n\n\n\nAlgorithm Explanation\n\nThis example generates synthetic customer purchase data for two segments: high spenders and low spenders.\nHigh spenders are simulated with a mean purchase amount of $150 and a standard deviation of $25 (high_spenders).\nLow spenders are simulated with a mean purchase amount of $50 and a standard deviation of $15 (low_spenders).\nBoth segments’ data are concatenated to create the overall customer dataset (customer_data).\nA Gaussian Mixture Model (GMM) with n_components=2 is fitted to the customer purchase data.."
   }
 ]
